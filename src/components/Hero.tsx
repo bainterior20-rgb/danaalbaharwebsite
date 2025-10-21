@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -12,55 +12,32 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Luxury Interior"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90" />
+        <img src={heroBg} alt="Luxury Interior by Dana Al Bahar" className="w-full h-full object-cover scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/95" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center animate-fade-in-up">
-        <p className="text-gold text-sm uppercase tracking-[0.3em] mb-6 font-light">
-          Since 2009
-        </p>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extralight mb-6 tracking-tight">
-          The Comfort of
-          <br />
-          <span className="text-gold font-light">Luxury</span>
+        <p className="text-gold-matte text-xs uppercase tracking-[0.4em] mb-8 font-inter font-light">Since 2009</p>
+        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-semibold mb-8 tracking-tight leading-[0.95] uppercase">
+          The Comfort of<br /><span className="text-gold italic">Luxury</span>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-          Premier turnkey interior contracting in Kuwait. Crafting exceptional spaces
-          with precision, elegance, and uncompromising quality.
+        <p className="text-base md:text-lg text-off-white/80 max-w-3xl mx-auto mb-14 font-inter font-light leading-relaxed">
+          Premier turnkey interior contracting in Kuwait. Crafting exceptional spaces with precision, elegance, and uncompromising quality.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button
-            onClick={() => scrollToSection("contact")}
-            size="lg"
-            className="gradient-gold text-black font-medium hover:opacity-90 transition-opacity shadow-elegant px-8"
-          >
-            Request Quote
-            <ArrowRight className="ml-2" size={20} />
+        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+          <Button onClick={() => scrollToSection("contact")} size="lg" className="bg-gold hover:bg-gold-matte text-black font-medium transition-all hover:shadow-gold-glow px-10 py-6 text-base rounded-full font-poppins uppercase tracking-wider">
+            Request Quote<ArrowRight className="ml-2" size={20} />
           </Button>
-          <Button
-            onClick={() => scrollToSection("projects")}
-            size="lg"
-            variant="outline"
-            className="border-gold text-gold hover:bg-gold hover:text-black transition-all"
-          >
-            <Play className="mr-2" size={20} />
+          <Button onClick={() => scrollToSection("projects")} size="lg" variant="outline" className="border-2 border-gold text-gold hover:bg-gold/10 transition-all px-10 py-6 text-base rounded-full font-poppins uppercase tracking-wider">
             View Projects
           </Button>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-gold/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-gold rounded-full" />
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-12 h-12 rounded-full border-2 border-gold/40 flex items-center justify-center">
+          <ChevronDown className="text-gold" size={24} />
         </div>
       </div>
     </section>

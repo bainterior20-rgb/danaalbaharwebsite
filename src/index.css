@@ -8,52 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Luxury dark theme with gold accents */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* ATMO-inspired premium dark theme with champagne gold */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 96%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 43 64% 53%;
+    --primary: 40 40% 63%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 43 64% 53%;
+    --accent: 38 42% 66%;
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 43 64% 53%;
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
+    --ring: 40 40% 63%;
 
-    --radius: 0.75rem;
+    --radius: 1.5rem;
 
-    /* Luxury brand colors */
-    --gold: 43 64% 53%;
-    --dark-gray: 0 0% 10%;
-    --light-text: 0 0% 85%;
+    /* Premium brand colors - Deep champagne gold */
+    --gold: 40 40% 63%;
+    --gold-matte: 38 42% 66%;
+    --off-white: 40 20% 96%;
+    --charcoal: 0 0% 6%;
+    --marble-dark: 0 0% 10%;
     
     /* Gradients */
-    --gradient-gold: linear-gradient(135deg, hsl(43 64% 53%) 0%, hsl(43 54% 43%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 5%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(40 40% 63%) 0%, hsl(38 42% 66%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 10%) 100%);
+    --gradient-overlay: linear-gradient(0deg, hsl(0 0% 0% / 0.9) 0%, hsl(0 0% 0% / 0.3) 100%);
+    --gradient-gold-glow: linear-gradient(135deg, hsl(40 40% 63% / 0.2) 0%, hsl(38 42% 66% / 0.1) 100%);
     
     /* Shadows */
-    --shadow-elegant: 0 10px 40px -10px hsl(43 64% 53% / 0.2);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --shadow-elegant: 0 20px 60px -15px hsl(0 0% 0% / 0.5);
+    --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.4);
+    --shadow-gold-glow: 0 8px 32px hsl(40 40% 63% / 0.3);
     
     /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -63,12 +69,17 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-['Poppins',sans-serif];
+    @apply bg-background text-foreground font-['Inter',sans-serif];
     scroll-behavior: smooth;
+    background: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 50%, hsl(0 0% 6%) 100%);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-light tracking-wide;
+    @apply font-['Playfair_Display',serif] font-semibold tracking-wider;
+  }
+  
+  p {
+    @apply font-['Inter',sans-serif] font-normal;
   }
 }
 
@@ -77,8 +88,16 @@ All colors MUST be HSL.
     @apply text-[hsl(var(--gold))];
   }
   
+  .text-gold-matte {
+    @apply text-[hsl(var(--gold-matte))];
+  }
+  
   .bg-gold {
     @apply bg-[hsl(var(--gold))];
+  }
+  
+  .bg-gold-matte {
+    @apply bg-[hsl(var(--gold-matte))];
   }
   
   .border-gold {
@@ -93,6 +112,10 @@ All colors MUST be HSL.
     background: var(--gradient-dark);
   }
   
+  .gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+  
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
@@ -101,15 +124,43 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-card);
   }
   
+  .shadow-gold-glow {
+    box-shadow: var(--shadow-gold-glow);
+  }
+  
   .transition-smooth {
     transition: var(--transition-smooth);
   }
   
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+  
   .hover-scale {
-    @apply transition-smooth hover:scale-105;
+    @apply transition-smooth hover:scale-[1.05];
+  }
+  
+  .hover-lift {
+    @apply transition-smooth hover:-translate-y-2;
   }
   
   .hover-gold {
     @apply transition-smooth hover:text-gold;
+  }
+  
+  .hover-glow {
+    @apply transition-smooth hover:shadow-gold-glow;
+  }
+  
+  .rounded-atmo {
+    border-radius: 2rem;
+  }
+  
+  .gold-divider {
+    @apply h-[2px] w-16 bg-gold mx-auto my-6;
+  }
+  
+  .parallax-zoom {
+    @apply transition-smooth hover:scale-110;
   }
 }
