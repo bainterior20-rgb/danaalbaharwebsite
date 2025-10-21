@@ -1,88 +1,123 @@
-import { Hammer, Sofa, Building, Wrench, PaintBucket, Zap, Lightbulb, Layers, FileText } from "lucide-react";
+import {
+  Hammer,
+  PaintBucket,
+  Wrench,
+  Box,
+  Home,
+  Lightbulb,
+} from "lucide-react";
 
 const Services = () => {
   const services = [
     {
       icon: Hammer,
-      title: "Carpentry Works",
-      description: "Custom woodwork crafted with precision and artistry",
-    },
-    {
-      icon: Sofa,
-      title: "Furniture Works",
-      description: "Bespoke furniture design and manufacturing",
-    },
-    {
-      icon: Building,
-      title: "Turnkey Interior Contracting",
-      description: "Complete interior solutions from concept to completion",
-    },
-    {
-      icon: Wrench,
-      title: "Joinery Works",
-      description: "Premium joinery for sophisticated interiors",
+      title: "Interior Construction",
+      description: "Turnkey fitout solutions delivering exceptional craftsmanship from concept to completion.",
+      variant: "gold" as const,
     },
     {
       icon: PaintBucket,
-      title: "Gypsum & Special Painting",
-      description: "Elegant ceiling systems and decorative finishes",
+      title: "Gypsum Construction",
+      description: "Precision gypsum work including walls, ceilings, and decorative architectural elements.",
+      variant: "white" as const,
     },
     {
-      icon: Zap,
-      title: "MEP Works",
-      description: "Advanced mechanical, electrical & plumbing systems",
+      icon: Box,
+      title: "3D & Architecture",
+      description: "Photorealistic 3D modeling and architectural visualization services.",
+      variant: "white" as const,
+    },
+    {
+      icon: Wrench,
+      title: "VIP Fit Out",
+      description: "Exclusive, high-end interior execution for discerning clients seeking perfection.",
+      variant: "gold" as const,
+    },
+    {
+      icon: Home,
+      title: "3D Rendering",
+      description: "Lifelike visual representations that bring your vision to clarity before construction begins.",
+      variant: "white" as const,
     },
     {
       icon: Lightbulb,
-      title: "Light Fitting",
-      description: "Designer lighting installations for ambiance",
-    },
-    {
-      icon: Layers,
-      title: "3D & 2D Design",
-      description: "Comprehensive design visualization services",
-    },
-    {
-      icon: FileText,
-      title: "BOQ Analysis",
-      description: "Detailed cost estimation and project planning",
+      title: "Designs That Speak Before They're Built",
+      description: "Transform ideas into stunning visual realities through advanced rendering technology.",
+      variant: "dark" as const,
     },
   ];
 
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <p className="text-gold text-sm uppercase tracking-[0.3em] mb-4 font-light">
-            Our Expertise
-          </p>
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
-            Premium <span className="text-gold">Services</span>
+        {/* Section Header */}
+        <div className="mb-20 animate-fade-in">
+          <h2 className="text-6xl lg:text-8xl font-playfair font-extralight tracking-[0.2em] text-foreground uppercase leading-tight">
+            SERVI<br />CES
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive interior solutions delivered with excellence and precision
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group bg-card border border-gold/20 rounded-lg p-8 shadow-card hover:shadow-elegant transition-all hover:-translate-y-2 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <service.icon
-                className="text-gold mb-4 transition-transform group-hover:scale-110"
-                size={40}
-              />
-              <h3 className="text-xl font-light mb-3 group-hover:text-gold transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const isGold = service.variant === "gold";
+            const isWhite = service.variant === "white";
+            const isDark = service.variant === "dark";
+
+            return (
+              <div
+                key={index}
+                className={`
+                  relative group p-8 rounded-[2rem] transition-all hover-lift hover-glow
+                  animate-fade-in
+                  ${isGold ? "bg-gold text-black" : ""}
+                  ${isWhite ? "bg-off-white text-black" : ""}
+                  ${isDark ? "bg-charcoal border-2 border-gold/20 text-foreground" : ""}
+                `}
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                {/* Icon */}
+                <div className={`
+                  w-16 h-16 rounded-full mb-6 flex items-center justify-center
+                  ${isGold ? "bg-black/10" : ""}
+                  ${isWhite ? "bg-gold/20" : ""}
+                  ${isDark ? "bg-gold/10 border border-gold/30" : ""}
+                `}>
+                  <Icon 
+                    className={`
+                      ${isGold || isWhite ? "text-black" : "text-gold"}
+                    `}
+                    size={28} 
+                    strokeWidth={1.5} 
+                  />
+                </div>
+
+                {/* Content */}
+                <h3 className={`
+                  text-xl font-playfair font-semibold mb-4 tracking-wide
+                  ${isDark ? "text-foreground" : "text-black"}
+                `}>
+                  {service.title}
+                </h3>
+                <p className={`
+                  text-sm font-inter leading-relaxed
+                  ${isGold ? "text-black/80" : ""}
+                  ${isWhite ? "text-black/70" : ""}
+                  ${isDark ? "text-muted-foreground" : ""}
+                `}>
+                  {service.description}
+                </p>
+
+                {/* Decorative Quote Icon for Dark Card */}
+                {isDark && (
+                  <div className="absolute top-8 right-8 text-gold/20 text-6xl font-serif">
+                    "
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

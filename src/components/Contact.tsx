@@ -57,123 +57,117 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <p className="text-gold text-sm uppercase tracking-[0.3em] mb-4 font-light">
-            Get In Touch
-          </p>
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
-            Start Your <span className="text-gold">Project</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Let's discuss how we can bring your interior vision to life
-          </p>
-        </div>
+    <section id="contact" className="relative py-32 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1920"
+          alt="Modern Interior Space"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="animate-fade-in">
-            <h3 className="text-2xl font-light mb-6">Contact Information</h3>
-            
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start gap-4">
-                <MapPin className="text-gold mt-1" size={24} />
-                <div>
-                  <p className="font-medium mb-1">Location</p>
-                  <p className="text-muted-foreground text-sm">
-                    Kuwait City, Kuwait
-                    <br />
-                    2000 SQM Facilities
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Phone className="text-gold mt-1" size={24} />
-                <div>
-                  <p className="font-medium mb-1">Phone</p>
-                  <p className="text-muted-foreground text-sm">+965 XXXX XXXX</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Mail className="text-gold mt-1" size={24} />
-                <div>
-                  <p className="font-medium mb-1">Email</p>
-                  <p className="text-muted-foreground text-sm">info@danaalbahar.com</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-card border border-gold/20 rounded-lg p-6 shadow-card">
-              <h4 className="font-medium mb-4">Business Hours</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex justify-between">
-                  <span>Sunday - Thursday</span>
-                  <span className="text-gold">8:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span className="text-gold">9:00 AM - 2:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Friday</span>
-                  <span>Closed</span>
-                </div>
-              </div>
-            </div>
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-5xl lg:text-6xl font-playfair font-semibold text-off-white mb-6 tracking-wide">
+              Have <span className="text-gold">a Project</span>
+              <br />
+              in Mind?
+            </h2>
+            <p className="text-off-white/80 text-lg font-inter max-w-2xl mx-auto leading-relaxed">
+              Tell us about your project, and we'll prepare a customized proposal with timelines and pricing.
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
-            <div>
-              <Input
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="bg-card border-gold/20 focus:border-gold"
-                required
-              />
+          {/* Form Card */}
+          <div className="bg-off-white rounded-[2rem] p-8 md:p-12 shadow-elegant animate-fade-in max-w-4xl mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
+                    required
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
+                  required
+                />
+              </div>
+
+              <div>
+                <Textarea
+                  name="message"
+                  placeholder="Tell us about your project..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl min-h-[160px] font-inter resize-none"
+                  required
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full md:w-auto bg-gold hover:bg-gold-matte text-black font-poppins font-medium px-12 py-6 text-base rounded-full uppercase tracking-wider transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
+            </form>
+          </div>
+
+          {/* Contact Info Below Form */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-in">
+            <div className="text-center">
+              <MapPin className="text-gold mx-auto mb-4" size={32} />
+              <h3 className="text-off-white font-playfair text-lg mb-2">Location</h3>
+              <p className="text-off-white/70 text-sm font-inter">
+                Kuwait City, Kuwait
+              </p>
             </div>
-            <div>
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                className="bg-card border-gold/20 focus:border-gold"
-                required
-              />
+            <div className="text-center">
+              <Phone className="text-gold mx-auto mb-4" size={32} />
+              <h3 className="text-off-white font-playfair text-lg mb-2">Phone</h3>
+              <p className="text-off-white/70 text-sm font-inter">
+                +965 0000 0000
+              </p>
             </div>
-            <div>
-              <Input
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className="bg-card border-gold/20 focus:border-gold"
-                required
-              />
+            <div className="text-center">
+              <Mail className="text-gold mx-auto mb-4" size={32} />
+              <h3 className="text-off-white font-playfair text-lg mb-2">Email</h3>
+              <p className="text-off-white/70 text-sm font-inter">
+                info@danaalbahar.com
+              </p>
             </div>
-            <div>
-              <Textarea
-                name="message"
-                placeholder="Tell us about your project..."
-                value={formData.message}
-                onChange={handleChange}
-                rows={6}
-                className="bg-card border-gold/20 focus:border-gold resize-none"
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full gradient-gold text-black font-medium hover:opacity-90 transition-opacity"
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-              <Send className="ml-2" size={18} />
-            </Button>
-          </form>
+          </div>
         </div>
       </div>
     </section>

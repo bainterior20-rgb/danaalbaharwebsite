@@ -1,68 +1,84 @@
-import { Search, Clipboard, Cog, CheckCircle } from "lucide-react";
+import { Lightbulb, FileText, Box, Package } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
     {
-      icon: Search,
+      icon: Lightbulb,
       title: "Discovery & Brief",
-      description: "We understand your vision, requirements, and design aspirations in detail",
+      description: "We explore your vision, goals, and space requirements to establish a clear creative direction.",
     },
     {
-      icon: Clipboard,
+      icon: FileText,
       title: "Concept & Planning",
-      description: "Our team creates comprehensive plans, 3D designs, and project timelines",
+      description: "Our designers craft comprehensive plans and architectural drawings tailored to your brief.",
     },
     {
-      icon: Cog,
-      title: "Execution",
-      description: "Expert craftsmen bring your vision to life with precision and care",
+      icon: Box,
+      title: "3D Modeling & Visualization",
+      description: "Experience your space before it's built through photorealistic 3D renderings and walkthroughs.",
     },
     {
-      icon: CheckCircle,
+      icon: Package,
       title: "Delivery & Review",
-      description: "Final inspection ensures every detail meets our exacting standards",
+      description: "Final inspection, walkthrough, and handover of your meticulously crafted interior space.",
     },
   ];
 
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <p className="text-gold text-sm uppercase tracking-[0.3em] mb-4 font-light">
-            Process
-          </p>
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
-            How It <span className="text-gold">Works</span>
+    <section className="relative py-32 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920"
+          alt="Interior workspace"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/75" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
+        {/* Section Title */}
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-6xl lg:text-7xl font-playfair font-extralight tracking-[0.3em] text-foreground uppercase mb-4">
+            How It Works
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our streamlined approach ensures exceptional results from concept to completion
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="relative text-center animate-fade-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div className="relative inline-block mb-6">
-                <div className="w-24 h-24 mx-auto rounded-full bg-gradient-dark border-2 border-gold/30 flex items-center justify-center hover:border-gold transition-all hover-scale shadow-elegant">
-                  <step.icon className="text-gold" size={40} />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full gradient-gold text-black flex items-center justify-center text-sm font-medium">
-                  {index + 1}
+        {/* Steps Timeline */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={index}
+                className="relative animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Connector Line (hidden on last item) */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-16 left-[60%] w-full h-[2px]">
+                    <div className="w-full h-full border-t-2 border-dashed border-gold/30" />
+                  </div>
+                )}
+
+                {/* Step Card */}
+                <div className="relative text-center">
+                  {/* Circular Icon */}
+                  <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center backdrop-blur-sm">
+                    <Icon className="text-gold" size={40} strokeWidth={1.5} />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-playfair font-semibold text-foreground mb-4 tracking-wide">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm font-inter leading-relaxed max-w-xs mx-auto">
+                    {step.description}
+                  </p>
                 </div>
               </div>
-              <h3 className="text-xl font-light mb-3">{step.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {step.description}
-              </p>
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-gold/50 to-transparent" />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

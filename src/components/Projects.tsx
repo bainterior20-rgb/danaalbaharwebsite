@@ -11,75 +11,118 @@ const Projects = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const projects = [
-    { image: project1, title: "Luxury Villa Living Room", location: "Salmiya" },
-    { image: project2, title: "Modern Kitchen Design", location: "Jabriya" },
-    { image: project3, title: "Executive Office Suite", location: "Kuwait City" },
-    { image: project4, title: "Hotel Lobby Interior", location: "Fintas" },
-    { image: project5, title: "Premium Bathroom Fitout", location: "Mishref" },
-    { image: project6, title: "Elegant Dining Space", location: "Salwa" },
+    {
+      image: project1,
+      title: "Lannister Residence",
+      subtitle: "A modern sanctuary blending minimalist design with luxury finishes and natural light",
+      location: "Salmiya",
+    },
+    {
+      image: project2,
+      title: "Elysium Vista",
+      subtitle: "Contemporary living spaces featuring clean lines and sophisticated material palette",
+      location: "Kuwait City",
+    },
+    {
+      image: project3,
+      title: "The Grand Maison",
+      subtitle: "Timeless elegance meets modern comfort in this meticulously crafted residence",
+      location: "Fintas",
+    },
+    {
+      image: project4,
+      title: "Serenity Villas",
+      subtitle: "Coastal-inspired interiors with an emphasis on calm, neutral tones and textures",
+      location: "Jabriya",
+    },
+    {
+      image: project5,
+      title: "Azure Estate",
+      subtitle: "Sophisticated urban dwelling with custom millwork and curated finishes",
+      location: "Shuwaikh",
+    },
   ];
 
   return (
-    <>
-      <section id="projects" className="py-24 bg-gradient-dark">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in">
-            <p className="text-gold text-sm uppercase tracking-[0.3em] mb-4 font-light">
-              Portfolio
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light mb-6">
-              Our <span className="text-gold">Projects</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore our collection of luxury interior transformations across Kuwait
-            </p>
-          </div>
+    <section id="projects" className="py-32 bg-background">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-6xl lg:text-7xl font-playfair font-extralight tracking-[0.3em] text-foreground uppercase">
+            Our Projects
+          </h2>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Projects Horizontal Scroll */}
+        <div className="relative">
+          <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-lg cursor-pointer animate-fade-in hover-scale"
+                className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center group cursor-pointer animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setSelectedImage(project.image)}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-light mb-2">{project.title}</h3>
-                  <p className="text-gold text-sm uppercase tracking-wider">
-                    {project.location}
-                  </p>
+                <div className="relative h-[500px] rounded-[2rem] overflow-hidden shadow-card">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                  />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-smooth" />
+                  
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <h3 className="text-2xl font-playfair font-semibold text-off-white mb-2 tracking-wide">
+                      {project.title}
+                    </h3>
+                    <p className="text-off-white/80 text-sm font-inter leading-relaxed mb-3">
+                      {project.subtitle}
+                    </p>
+                    <p className="text-gold text-xs font-inter uppercase tracking-wider">
+                      {project.location}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Lightbox */}
+      {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white hover:text-gold transition-colors"
             onClick={() => setSelectedImage(null)}
+            className="absolute top-8 right-8 text-white hover:text-gold transition-colors"
+            aria-label="Close lightbox"
           >
             <X size={32} />
           </button>
           <img
             src={selectedImage}
-            alt="Project"
-            className="max-w-full max-h-full object-contain animate-scale-in"
+            alt="Project detail"
+            className="max-w-full max-h-[90vh] object-contain rounded-[2rem] shadow-elegant"
           />
         </div>
       )}
-    </>
+
+      {/* Custom Scrollbar Styles */}
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </section>
   );
 };
 
