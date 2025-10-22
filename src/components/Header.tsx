@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import danaLogo from "@/assets/danalogo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,71 +16,73 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+    setIsMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/95 backdrop-blur-md shadow-elegant" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled ? "bg-black/85 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="text-2xl font-light tracking-wider">
-          <span className="text-foreground">DANA AL BAHAR</span>
-          <span className="text-gold ml-2">CONSTRUCTION</span>
-        </div>
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* LOGO */}
+        <img
+          src={danaLogo}
+          alt="Dana Al Bahar Logo"
+          className="h-14 md:h-16 lg:h-[75px] w-auto object-contain brightness-110 contrast-110 drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)] cursor-pointer"
+          onClick={() => scrollToSection("hero")}
+        />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {["about", "services", "projects", "contact"].map((item) => (
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center gap-12">
+          {["About", "Services", "Portfolio", "Blog"].map((link) => (
             <button
-              key={item}
-              onClick={() => scrollToSection(item)}
-              className="text-sm font-light uppercase tracking-wider hover-gold"
+              key={link}
+              onClick={() => scrollToSection(link.toLowerCase())}
+              className="text-sm uppercase tracking-[0.2em] text-gray-300 hover:text-[#C5A15E] transition-all font-inter"
             >
-              {item}
+              {link}
             </button>
           ))}
+
           <Button
+            className="rounded-full bg-white hover:bg-gray-100 text-black font-medium tracking-wider text-sm px-6 py-2 transition-all shadow-sm"
             onClick={() => scrollToSection("contact")}
-            className="gradient-gold text-black font-medium hover:opacity-90 transition-opacity"
           >
-            Request Quote
+            Get Free Consultation
           </Button>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* MOBILE MENU BUTTON */}
         <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden text-white"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/98 backdrop-blur-md border-t border-gold/20">
-          <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
-            {["about", "services", "projects", "contact"].map((item) => (
+      {/* MOBILE MENU */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-black/95 backdrop-blur-lg border-t border-[#C5A15E]/20 animate-fade-in">
+          <nav className="container mx-auto py-8 flex flex-col gap-6 text-center">
+            {["About", "Services", "Portfolio", "Blog"].map((link) => (
               <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className="text-left text-sm font-light uppercase tracking-wider hover-gold py-2"
+                key={link}
+                onClick={() => scrollToSection(link.toLowerCase())}
+                className="uppercase tracking-[0.2em] text-gray-300 hover:text-[#C5A15E] font-inter text-sm"
               >
-                {item}
+                {link}
               </button>
             ))}
             <Button
+              className="bg-white hover:bg-gray-100 text-black font-medium tracking-wider text-sm px-6 py-2 rounded-full"
               onClick={() => scrollToSection("contact")}
-              className="gradient-gold text-black font-medium hover:opacity-90 transition-opacity mt-2"
             >
-              Request Quote
+              Get Free Consultation
             </Button>
           </nav>
         </div>
