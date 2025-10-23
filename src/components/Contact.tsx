@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,16 +28,16 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const validated = contactSchema.parse(formData);
-      
+      contactSchema.parse(formData);
+
       // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      
+
       toast({
         title: "Message Sent Successfully",
         description: "We'll get back to you within 24 hours.",
       });
-      
+
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -52,13 +52,15 @@ const Contact = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
-      {/* Background Image */}
+      {/* === Background Image === */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1920"
@@ -68,10 +70,10 @@ const Contact = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      {/* Content */}
+      {/* === Content === */}
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
+          {/* === Header === */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-5xl lg:text-6xl font-playfair font-semibold text-off-white mb-6 tracking-wide">
               Have <span className="text-gold">a Project</span>
@@ -83,56 +85,48 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Form Card */}
+          {/* === Form Card === */}
           <div className="bg-off-white rounded-[2rem] p-8 md:p-12 shadow-elegant animate-fade-in max-w-4xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
-                    required
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
                 <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={formData.phone}
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
+                  required
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
                   onChange={handleChange}
                   className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
                   required
                 />
               </div>
 
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder="Tell us about your project..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl min-h-[160px] font-inter resize-none"
-                  required
-                />
-              </div>
+              <Input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+                className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl h-14 font-inter"
+                required
+              />
+
+              <Textarea
+                name="message"
+                placeholder="Tell us about your project..."
+                value={formData.message}
+                onChange={handleChange}
+                className="bg-white border-marble-dark/20 text-charcoal placeholder:text-charcoal/50 rounded-xl min-h-[160px] font-inter resize-none"
+                required
+              />
 
               <Button
                 type="submit"
@@ -144,27 +138,41 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* Contact Info Below Form */}
+          {/* === Contact Info Below Form === */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-in">
+            {/* === Location === */}
             <div className="text-center">
               <MapPin className="text-gold mx-auto mb-4" size={32} />
-              <h3 className="text-off-white font-playfair text-lg mb-2">Location</h3>
-              <p className="text-off-white/70 text-sm font-inter">
-                Kuwait City, Kuwait
+              <h3 className="text-off-white font-playfair text-lg mb-2">
+                Location
+              </h3>
+              <p className="text-white font-semibold text-sm font-inter leading-relaxed">
+                Office No: 20, Floor 2 <br />
+                Building No: 63, Block 6 <br />
+                Mubarakiya 15000 <br />
+                Kuwait City
               </p>
             </div>
+
+            {/* === Phone === */}
             <div className="text-center">
               <Phone className="text-gold mx-auto mb-4" size={32} />
-              <h3 className="text-off-white font-playfair text-lg mb-2">Phone</h3>
-              <p className="text-off-white/70 text-sm font-inter">
-                +965 0000 0000
+              <h3 className="text-off-white font-playfair text-lg mb-2">
+                Phone
+              </h3>
+              <p className="text-white font-semibold text-sm font-inter">
+                +965 41039976
               </p>
             </div>
+
+            {/* === Email === */}
             <div className="text-center">
               <Mail className="text-gold mx-auto mb-4" size={32} />
-              <h3 className="text-off-white font-playfair text-lg mb-2">Email</h3>
-              <p className="text-off-white/70 text-sm font-inter">
-                info@danaalbahar.com
+              <h3 className="text-off-white font-playfair text-lg mb-2">
+                Email
+              </h3>
+              <p className="text-white font-semibold text-sm font-inter">
+                info@danaalbaharkw.com
               </p>
             </div>
           </div>

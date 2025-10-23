@@ -1,125 +1,121 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   Hammer,
   PaintBucket,
   Wrench,
   Box,
-  Home,
   Lightbulb,
+  Ruler,
+  PenTool,
+  Layers,
+  ClipboardList,
 } from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
 
 const Services = () => {
   const services = [
     {
       icon: Hammer,
-      title: "Interior Construction",
-      description: "Turnkey fitout solutions delivering exceptional craftsmanship from concept to completion.",
-      variant: "gold" as const,
-    },
-    {
-      icon: PaintBucket,
-      title: "Gypsum Construction",
-      description: "Precision gypsum work including walls, ceilings, and decorative architectural elements.",
-      variant: "white" as const,
-    },
-    {
-      icon: Box,
-      title: "3D & Architecture",
-      description: "Photorealistic 3D modeling and architectural visualization services.",
-      variant: "white" as const,
+      title: "Carpentry Works",
     },
     {
       icon: Wrench,
-      title: "VIP Fit Out",
-      description: "Exclusive, high-end interior execution for discerning clients seeking perfection.",
-      variant: "gold" as const,
+      title: "Furniture Works",
     },
     {
-      icon: Home,
-      title: "3D Rendering",
-      description: "Lifelike visual representations that bring your vision to clarity before construction begins.",
-      variant: "white" as const,
+      icon: Layers,
+      title: "Turnkey Interior Contracting",
+    },
+    {
+      icon: Ruler,
+      title: "Joinery Works",
+    },
+    {
+      icon: PaintBucket,
+      title: "Gypsum Plastering & Special Painting",
     },
     {
       icon: Lightbulb,
-      title: "Designs That Speak Before They're Built",
-      description: "Transform ideas into stunning visual realities through advanced rendering technology.",
-      variant: "dark" as const,
+      title: "Mechanical, Electrical & Plumbing Works",
+    },
+    {
+      icon: Box,
+      title: "Light Fitting",
+    },
+    {
+      icon: PenTool,
+      title: "3D & 2D Designing and Detailed Drawings",
+    },
+    {
+      icon: ClipboardList,
+      title: "Bill of Quantity (BOQ) Analysis",
     },
   ];
 
   return (
-    <section id="services" className="py-32 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="mb-20 animate-fade-in">
-          <h2 className="text-6xl lg:text-8xl font-playfair font-extralight tracking-[0.2em] text-foreground uppercase leading-tight">
-            SERVI<br />CES
+    <section
+      id="services"
+      className="relative py-28 md:py-36 bg-[#0A0A0A] overflow-hidden"
+    >
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+        {/* === Section Header === */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mb-20 text-center"
+        >
+          <h2 className="text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-playfair font-extralight tracking-[0.15em] text-white uppercase leading-none">
+            Services
           </h2>
-        </div>
+          <motion.div
+            className="mt-4 mx-auto h-[2px] w-32 bg-[#C5A15E]/60 rounded-full"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          ></motion.div>
+        </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* === Services Grid === */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const isGold = service.variant === "gold";
-            const isWhite = service.variant === "white";
-            const isDark = service.variant === "dark";
-
             return (
-              <div
+              <motion.div
                 key={index}
-                className={`
-                  relative group p-8 rounded-[2rem] transition-all hover-lift hover-glow
-                  animate-fade-in
-                  ${isGold ? "bg-gold text-black" : ""}
-                  ${isWhite ? "bg-off-white text-black" : ""}
-                  ${isDark ? "bg-charcoal border-2 border-gold/20 text-foreground" : ""}
-                `}
-                style={{ animationDelay: `${index * 0.05}s` }}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -6 }}
+                className="relative flex flex-col items-center justify-center text-center h-[300px] p-8 rounded-[2rem] bg-[#111] border border-[#C5A15E]/20 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_40px_rgba(197,161,94,0.2)] transition-all duration-500"
               >
                 {/* Icon */}
-                <div className={`
-                  w-16 h-16 rounded-full mb-6 flex items-center justify-center
-                  ${isGold ? "bg-black/10" : ""}
-                  ${isWhite ? "bg-gold/20" : ""}
-                  ${isDark ? "bg-gold/10 border border-gold/30" : ""}
-                `}>
-                  <Icon 
-                    className={`
-                      ${isGold || isWhite ? "text-black" : "text-gold"}
-                    `}
-                    size={28} 
-                    strokeWidth={1.5} 
-                  />
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#C5A15E]/10 border border-[#C5A15E]/30 mb-6">
+                  <Icon className="text-[#C5A15E]" size={32} strokeWidth={1.5} />
                 </div>
 
-                {/* Content */}
-                <h3 className={`
-                  text-xl font-playfair font-semibold mb-4 tracking-wide
-                  ${isDark ? "text-foreground" : "text-black"}
-                `}>
+                {/* Title */}
+                <h3 className="text-white text-lg md:text-xl font-poppins font-semibold uppercase tracking-wide">
                   {service.title}
                 </h3>
-                <p className={`
-                  text-sm font-inter leading-relaxed
-                  ${isGold ? "text-black/80" : ""}
-                  ${isWhite ? "text-black/70" : ""}
-                  ${isDark ? "text-muted-foreground" : ""}
-                `}>
-                  {service.description}
-                </p>
-
-                {/* Decorative Quote Icon for Dark Card */}
-                {isDark && (
-                  <div className="absolute top-8 right-8 text-gold/20 text-6xl font-serif">
-                    "
-                  </div>
-                )}
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </div>
+
+      {/* === Subtle Bottom Fade === */}
+      <div className="absolute bottom-0 left-0 w-full h-[200px] bg-gradient-to-t from-black to-transparent"></div>
     </section>
   );
 };
