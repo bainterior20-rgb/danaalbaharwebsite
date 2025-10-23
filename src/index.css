@@ -164,3 +164,17 @@ All colors MUST be HSL.
     @apply transition-smooth hover:scale-110;
   }
 }
+
+/* === WhatsApp Floating Button Glow Animation === */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(40 40% 63% / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px hsl(40 40% 63% / 0.8);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}

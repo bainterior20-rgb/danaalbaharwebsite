@@ -1,20 +1,41 @@
-import { MessageCircle } from "lucide-react";
+"use client";
+
+import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    // Replace with actual WhatsApp number
-    const phoneNumber = "96500000000"; // Kuwait format without +
-    const message = encodeURIComponent("Hello, I'm interested in your interior fitout services.");
+    const phoneNumber = "96541039976"; // Kuwait number without +
+    const message = encodeURIComponent(
+      "Hello, I'm interested in your interior fit-out services."
+    );
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full gradient-gold text-black flex items-center justify-center shadow-elegant hover:opacity-90 transition-all hover-scale animate-fade-in"
       aria-label="Contact us on WhatsApp"
+      className="
+        fixed
+        bottom-5 right-5
+        sm:bottom-6 sm:right-6
+        w-12 h-12 sm:w-14 sm:h-14
+        rounded-full
+        bg-[hsl(var(--gold))]
+        text-black
+        flex items-center justify-center
+        hover:bg-[hsl(var(--gold-matte))]
+        transition-all duration-300 ease-in-out
+        animate-fade-in animate-pulse-glow
+        shadow-[0_0_25px_hsl(40_40%_63%_/_0.4)]
+        z-[999999] pointer-events-auto
+      "
+      style={{
+        position: "fixed",
+        zIndex: 999999,
+      }}
     >
-      <MessageCircle size={28} />
+      <FaWhatsapp size={26} />
     </button>
   );
 };

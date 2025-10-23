@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
+import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,6 +8,7 @@ const Footer = () => {
     <footer className="bg-gradient-dark border-t border-gold/20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
+          {/* Company Info */}
           <div>
             <h3 className="text-xl font-light mb-4">
               <span className="text-foreground">DANA AL BAHAR</span>
@@ -18,6 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h4 className="font-medium mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -44,6 +47,7 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Services */}
           <div>
             <h4 className="font-medium mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -54,39 +58,56 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Follow Us */}
           <div>
             <h4 className="font-medium mb-4">Follow Us</h4>
             <div className="flex gap-4">
+              {/* Facebook */}
               <a
                 href="#"
+                aria-label="Facebook"
                 className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-black transition-all hover-scale"
               >
                 <Facebook size={18} />
               </a>
+
+              {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/danaalbahar.kwt/"
+                aria-label="Instagram"
                 className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-black transition-all hover-scale"
               >
                 <Instagram size={18} />
               </a>
+
+              {/* WhatsApp */}
               <a
-                href="#"
+                href="https://wa.me/96541039976"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
                 className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-black transition-all hover-scale"
               >
-                <Linkedin size={18} />
+                <FaWhatsapp size={18} />
               </a>
+
+              {/* TikTok */}
               <a
-                href="#"
+                href="https://www.tiktok.com/@danaalbaharkwt?_t=ZS-90eAdqqPLrm&_r=1"
+                aria-label="TikTok"
                 className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-black transition-all hover-scale"
               >
-                <Twitter size={18} />
+                <FaTiktok size={16} />
               </a>
             </div>
           </div>
         </div>
 
+        {/* Footer Bottom */}
         <div className="border-t border-gold/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} Dana Al Bahar Construction Company. All rights reserved.</p>
+          <p>
+            © {currentYear} Dana Al Bahar Construction Company. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
