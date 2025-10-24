@@ -8,7 +8,7 @@ const Clients = () => {
     "Goose Coffee",
     "Mini Market Mini",
     "Aquaria",
-    "Ecite",
+    "Xcite",
     "Etam International",
     "Barton Restaurant",
     "Chocolate Bar",

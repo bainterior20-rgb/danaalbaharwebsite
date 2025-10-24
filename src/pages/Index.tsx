@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Clients from "@/components/Clients"; // ✅ Add this
 import Projects from "@/components/Projects";
+import Gallery from "@/components/Gallery";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
@@ -34,6 +35,11 @@ const Index = () => {
 
       <section id="projects">
         <Projects />
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery">
+        <Gallery />
       </section>
 
       <section id="how-it-works">
